@@ -72,7 +72,7 @@
               const data = await fetch(`https://api.github.com/users/${userName}`)
               const json = await data.json()
               //please note right now i am using innerhtml but we can use other better security
-              userData.innerHTML = `<p class="text-sm text-center">${json?.name }</p> <p class="text-sm text-center">${json?.bio}</p>`
+              userData.innerHTML = `<p class="text-sm text-center">${json?.name ? json.name:"not found" }</p> <p class="text-sm text-center">${json?.bio ? json.bio :"not found"}</p>`
               getValue.value=""
           } catch (error) {
               console.log(error)
