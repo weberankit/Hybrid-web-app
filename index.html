@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  
+</head>
+
+
+<body class="bg-white">
+
+<div id="root"></div>
+
+
+
+  <div id="static" class="container mx-auto p-4 pt-6 mt-9">
+      <div  class=" h-59 overflow-y-scroll flex items-center justify-center bg-gradient-to-r from-blue-600 to-purple-600 py-4">
+          <div class="text-white text-xl font-serif font-extrabold text-center">
+              <h1 class="text-5xl font-bold mb-4">Hybrid Explorer</h1>
+              <p class="text-lg mb-2">This is Html & React based web app to fix seo and imporve ux</p>
+              <div class="dynamic text-lg text-center text-white mb-4"></div>
+              <div><label><input type="text" class="input-el rounded-lg text-black text-sm" placeholder="github-username"></label> <button onclick="callData()">ok</button></div>
+          </div>
+      </div>
+      <main class="bg-white rounded-lg shadow-lg p-4 mt-4">
+          <section class="p-4 mb-4">
+              <h2 class="text-2xl font-bold mb-2">Latest Mission</h2>
+              <img src="https://picsum.photos/400/200" loading="lazy" alt="Mission Image" class="w-full h-64 object-cover mb-4">
+              <p class="text-lg mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.</p>
+              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><a href="http://localhost:5173/about-food">Foody</a></button>
+          </section>
+          <section class="p-4 mb-4">
+              <h2 class="text-2xl font-bold mb-2">Upcoming Events</h2>
+              <ul class="list-none mb-4">
+                  <li class="flex items-center mb-2">
+                      <img src="https://picsum.photos/100/100" loading="lazy"  alt="Event Image" class="w-12 h-12 object-cover rounded-full mr-4">
+                      <div>
+                          <h3 class="text-lg font-bold mb-1">Event 1</h3>
+                          <p class="text-sm text-gray-600">Date: 2024-12-15</p>
+                      </div>
+                  </li>
+                  <li class="flex items-center mb-2">
+                      <img src="https://picsum.photos/100/100" loading="lazy"  alt="Event Image" class="w-12 h-12 object-cover rounded-full mr-4">
+                      <div>
+                          <h3 class="text-lg font-bold mb-1">Event 2</h3>
+                          <p class="text-sm text-gray-600">Date: 2024-12-20</p>
+                      </div>
+                  </li>
+              </ul>
+              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">View All Events</button>
+          </section>
+      </main>
+  </div>
+
+  <footer class="bg-gray-800 text-white text-center py-4 mt-4">
+      <p>&copy; 2024 Space Explorer</p>
+  </footer>
+
+  <script>
+      async function callData() {
+          try {
+            const userData = document.querySelector(".dynamic")
+            const getValue=document.querySelector(".input-el")
+            let userName=getValue?.value || "weberankit"
+              const data = await fetch(`https://api.github.com/users/${userName}`)
+              const json = await data.json()
+              //please note right now i am using innerhtml but we can use other better security
+              userData.innerHTML = `<p class="text-sm text-center">${json?.name }</p> <p class="text-sm text-center">${json?.bio}</p>`
+              getValue.value=""
+          } catch (error) {
+              console.log(error)
+              
+          }
+      }
+   callData()
+  </script>
+  <script type="module" src="index.jsx"></script>
+</body>
+</html> 
